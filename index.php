@@ -72,6 +72,13 @@ if (!is_null($events['events'])) {
                                         'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
+                        }else if(strpos($text, "จอง") !== false){
+                            $messages = [
+                                [
+                                    'type' => 'text',
+                                    'text' => 'จอง'
+                                ]
+                            ]
                         }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
                             $messages = [
                                 [
