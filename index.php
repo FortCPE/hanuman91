@@ -292,7 +292,7 @@ if (!is_null($events['events'])) {
 
                 }else{
                     if($text == 'Bot Start'){
-                        $Update_Status = "UPDATE bot_speak SET status = 'true' WHERE group_id = :group_id";
+                        $Update_Status = "UPDATE bot_status SET status = 'true' WHERE group_id = :group_id";
                         $Query_Update = $pdo->prepare($Update_Status);
                         $Query_Update->execute(Array(
                             ":group_id" => $groupId
