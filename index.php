@@ -103,10 +103,9 @@ if (!is_null($events['events'])) {
                             $fouth_array = array();
                             $fifth_array = array();
                             $sixth_array = array();
-                            $array1= array('Mathematics','Physics');
-                            array_push($array1,'Chemistry','Biology');
-                            for ($i=0; $i < count($array1); $i++) { 
-                                $text_first .= ' '.$array1[$i];
+                            array_push($first_array, $Name);
+                            for ($i=0; $i < count($first_array); $i++) { 
+                                $text_first .= ' '.$first_array[$i];
                             }
                             $messages = [
                                 [
