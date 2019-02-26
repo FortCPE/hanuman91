@@ -102,12 +102,10 @@ if (!is_null($events['events'])) {
                                 ":user_id" => $userId
                             ));
                             $row_check = $query_check->rowCount();
-                            if($row_check >= 1){
                                 $delete_connection = $pdo->prepare("DELETE FROM `bot_customer` WHERE `user_id` = :user_id");
                                 $delete_connection->execute(Array(
                                     ":user_id" => $userId
                                 ));
-                            }else{
                                 if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
                                    $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
                                 ){
@@ -164,7 +162,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId
                                     ));
                                 }
-                            }
+
                             
                             
                             $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
