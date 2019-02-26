@@ -33,7 +33,7 @@ if (!is_null($events['events'])) {
             if($rowCount >= 1){
                 $date = date('d/m/Y');
 
-                $var_date = "2012-01-01 00:00:00"; // Query ออกมาได้เลยครับ
+                $var_date = date('Y-m-d'); // Query ออกมาได้เลยครับ
 
                 $thai_day_arr=array("อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์");
                 function thai_date($time){
