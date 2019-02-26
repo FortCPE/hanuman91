@@ -100,7 +100,7 @@ if (!is_null($events['events'])) {
                             $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
                             $insert_connection->execute(Array(
                                 ":id" => NULL,
-                                ":name" => $result_val[0],
+                                ":name" => var_dump($result_val),
                                 ":time_today" => $result_val[1],
                                 ":user_id" => $userId
                             ));
