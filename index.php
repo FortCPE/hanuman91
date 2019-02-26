@@ -96,6 +96,15 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
+                            $result_val = explode($text, "จอง");
+                            $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
+                            $insert_connection->execute(Array(
+                                ":id" => NULL,
+                                ":name" => $result_val[0],
+                                ":time_today" => $result_val[1],
+                                ":user_id" => $userId
+                            ));
+                            
                             $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
                             $query_connection->execute();
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
