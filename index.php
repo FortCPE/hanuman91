@@ -97,17 +97,83 @@ if (!is_null($events['events'])) {
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
                             $result_val = explode("จอง", $text);
-                            if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
-                               $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
-                            ){
-                                $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
-                                $insert_connection->execute(Array(
-                                    ":id" => NULL,
-                                    ":name" => $result_val[0],
-                                    ":time_today" => "9:30",
-                                    ":user_id" => $userId
+                            $query_check = $pdo->prepare("SELECT * FROM `bot_customer` WHERE `user_id` = :user_id AND `today` = :today");
+                            $query_check->execute(Array(
+                                ":user_id" => $userId,
+                                ":today" => date("Y-m-d")
+                            ));
+                            $row_check = $query_check->rowCount();
+                            if($row_check >= 1){
+                                $delete_connection = $pdo->prepare("DELETE FROM `bot_customer` WHERE `user_id` = :user_id AND `today` = :today");
+                                $delete_connection->execute(Array(
+                                    ":user_id" => $userId,
+                                    ":today" => date("Y-m-d")
                                 ));
+                            }else{
+                                if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
+                                   $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "9:30",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }else if($result_val[1] == "11:00" || $result_val[1] == " 11:00"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "11:00",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }else if($result_val[1] == "15:00" || $result_val[1] == " 15:00"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "15:00",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }else if($result_val[1] == "16:30" || $result_val[1] == " 16:30"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "16:30",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }else if($result_val[1] == "18:00" || $result_val[1] == " 18:00"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "18:00",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }else if($result_val[1] == "19:30" || $result_val[1] == " 19:30"
+                                ){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                    $insert_connection->execute(Array(
+                                        ":id" => NULL,
+                                        ":name" => $result_val[0],
+                                        ":time_today" => "19:30",
+                                        ":user_id" => $userId,
+                                        ":today" => $date("Y-m-d")
+                                    ));
+                                }
                             }
+                            
                             
                             $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
                             $query_connection->execute();
