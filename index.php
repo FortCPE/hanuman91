@@ -26,7 +26,7 @@ if (!is_null($events['events'])) {
             $pdo = new PDO("mysql:host=$server;dbname=$db", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));  
 
             if($groupId != '' && $userId != ''){
-                if(strpos($text, 'สวัสดี') !== false || strpos($text, 'โย่') !== false){
+                if($text != ''){
                     $headers_gp = array('Authorization: Bearer ' . $access_token);
                     $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
                     $ch_gp = curl_init($url_gp);
@@ -48,18 +48,6 @@ if (!is_null($events['events'])) {
                             'text' => 'มีอะไรให้รับใช้ครับ'
                         ]
                     ];
-                
-                }else if($reply != ''){
-                    $messages = [
-                            [
-                                'type' => 'text',
-                                'text' => $reply
-                            ]
-                    ];
-                }else if($text == 'รายงานสภาพอากาศวันนี้'){
-
-                }else{
-
                 }
             }else{
                 // User -> Bot
@@ -85,5 +73,5 @@ if (!is_null($events['events'])) {
         }
     }
 }
-echo "OK";
+echo "OK GROUP";
 ?>
