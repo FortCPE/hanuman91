@@ -96,20 +96,35 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-                            $check_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE user_id = :user_id");
-                            $check_connection->execute(Array(
-                                ":user_id" => $userId
-                            ));
-                            $row_connection = $check_connection->rowCount();
-                            $first_array = array();
-                            $second_array = array();
-                            $third_array = array();
-                            $fouth_array = array();
-                            $fifth_array = array();
-                            $sixth_array = array();
-                            array_push($first_array, $Name);
-                            for ($i=0; $i < count($first_array); $i++) { 
-                                $text_first .= ' '.$first_array[$i];
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_first .= ' '.$fetch_connection['name'];
+                            }
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '11:00'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_second .= ' '.$fetch_connection['name'];
+                            }
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '15:00'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_third .= ' '.$fetch_connection['name'];
+                            }
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '16:30'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_fouth .= ' '.$fetch_connection['name'];
+                            }
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '18:00'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_fifth .= ' '.$fetch_connection['name'];
+                            }
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '19:30'");
+                            $query_connection->execute();
+                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                $text_sixth .= ' '.$fetch_connection['name'];
                             }
                             $messages = [
                                 [
@@ -117,11 +132,11 @@ if (!is_null($events['events'])) {
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 อัพเดต'.$var_date.' '.$date.'
 09.30'.$text_first.'
-11:00 
-15.00 
-16.30
-18.00 ไอซ์ พี่โบว์ มิลค์
-19:30 ป้อม
+11:00'.$text_second.'
+15.00'.$text_third.'
+16.30'.$text_fouth.'
+18.00'.$text_fifth.'
+19:30'.$text_sixth.'
 **เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                 ]
