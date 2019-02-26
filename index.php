@@ -455,17 +455,8 @@ if (!is_null($events['events'])) {
             curl_close($ch);
 
             echo $result . "\r\n";
-            $headers_gp = array('Authorization: Bearer ' . $access_token);
-            $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/members/ids';
-            $ch_gp = curl_init($url_gp);
-            curl_setopt($ch_gp, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch_gp, CURLOPT_HTTPHEADER, $headers_gp);
-            curl_setopt($ch_gp, CURLOPT_FOLLOWLOCATION, 1);
-            $result_gp = curl_exec($ch_gp);
-            $result_decode = json_decode($result_gp);
-            curl_close($ch_gp);
-            var_dump($result_decode);
         }
     }
 }
+echo "OK";
 ?>
