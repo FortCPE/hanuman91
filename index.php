@@ -112,7 +112,7 @@ if (!is_null($events['events'])) {
                                     'type' => 'text',
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 อัพเดต'.$var_date.' '.$date.'
-09.30 '.print_r($array1);.'
+09.30 '.print_r($array1).'
 11:00 
 15.00 
 16.30
