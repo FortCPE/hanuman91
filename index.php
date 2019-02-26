@@ -103,7 +103,7 @@ if (!is_null($events['events'])) {
                             $fouth_array = array();
                             $fifth_array = array();
                             $sixth_array = array();
-                            array_push($first_array, $name);
+                            array_push($first_array, $Name);
 
                             $messages = [
                                 [
