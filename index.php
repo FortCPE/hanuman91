@@ -109,12 +109,13 @@ if (!is_null($events['events'])) {
                                 if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
                                    $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
                                 ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
                                         ":name" => $result_val[0],
                                         ":time_today" => "9:30",
-                                        ":user_id" => $userId
+                                        ":user_id" => $userId,
+                                        ":today" => date("Y-m-d")
                                     ));
                                 }else if($result_val[1] == "11:00" || $result_val[1] == " 11:00"
                                 ){
@@ -210,6 +211,8 @@ if (!is_null($events['events'])) {
 ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                 ]
                             ];
+                        }else if(strpos($text, "ยกเลิก") !== false){
+
                         }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
                             $messages = [
                                 [
