@@ -78,7 +78,7 @@ if (!is_null($events['events'])) {
                                     'type' => 'text',
                                     'text' => 'จอง'
                                 ]
-                            ]
+                            ];
                         }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
                             $messages = [
                                 [
