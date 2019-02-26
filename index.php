@@ -45,7 +45,6 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-                            $Display_Name = "โฟร์ท";
                             $messages = [
                                 [
                                     'type' => 'text',
@@ -56,17 +55,32 @@ if (!is_null($events['events'])) {
                                     'text' => 'มีอะไรให้รับใช้ครับ'
                                 ]
                             ];
-                            
-                        }else if($text == 'รายงานสภาพอากาศวันนี้'){
-                            
-                        }else if(strpos($text, 'อากาศ') !== false){
-                            
-                        }else if(strpos($text, 'add:') !== false){
-                          
-                        }else if(strpos($text, 'remove:') !== false){
-                          
-                        }else if(strpos($text, 'ขอเบอร์') !== false || strpos($text, 'เบอร์') !== false || strpos($text, 'เบอ') !== false){
-                            
+                        }else if(strpos($text, "จอง") !== false || strpos($text, " ") !== false)
+                            $headers_gp = array('Authorization: Bearer ' . $access_token);
+                            $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
+                            $ch_gp = curl_init($url_gp);
+                            curl_setopt($ch_gp, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch_gp, CURLOPT_HTTPHEADER, $headers_gp);
+                            curl_setopt($ch_gp, CURLOPT_FOLLOWLOCATION, 1);
+                            $result_gp = curl_exec($ch_gp);
+                            $result_decode = json_decode($result_gp);
+                            curl_close($ch_gp);
+                            $Name = $result_decode->displayName;
+                            $messages = [
+                                [
+                                    'type' => 'text',
+                                    'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
+                                                อัพเดตวันอังคาร26/2/62
+                                                09.30 ตุ๊ก2 แอน ติน แอน ทดลอง กิ่ง
+                                                11:00 
+                                                15.00 
+                                                16.30
+                                                18.00 ไอซ์ พี่โบว์ มิลค์
+                                                19:30 ป้อม
+                                                **เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
+                                                🙏ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
+                                ]
+                            ];
                         }else if($text == 'Bot Shutdown'){
                             $Update_Status = "UPDATE bot_status SET status = 'false' WHERE group_id = :group_id";
                             $Query_Update = $pdo->prepare($Update_Status);
@@ -142,78 +156,7 @@ if (!is_null($events['events'])) {
                                           "imageSize" => "cover"
                                       ]
                                 ]
-                            ];      
-
-                            // $messages = [
-                            //  [
-                            //        "type" => "template",
-                            //        "altText" => "this is a carousel template",
-                            //        "template" => [
-                            //            "type" => "carousel",
-                            //            "columns" => [
-                            //                [
-                            //                  "thumbnailImageUrl" => "https://codesign-studio.in.th/img/jake.jpg",
-                            //                  "imageBackgroundColor" => "#FFFFFF",
-                            //                  "title" => "ตัวเลือก",
-                            //                  "text" => "กรุณาเลือก",
-                            //                  "actions" => [
-                            //                        [
-                            //                          "type" => "message",
-                            //                          "label" => "Jake คืออะไร",
-                            //                          "text" => "นายเป็นใคร"
-                            //                        ],
-                            //                        [
-                            //                          "type" => "message",
-                            //                          "label" => "สอน Jake ยังไง",
-                            //                          "text" => "วิธีสอน Jake"
-                            //                        ],
-                            //                        [
-                            //                          "type" => "message",
-                            //                          "label" => "สภาพอากาศของวันนี้",
-                            //                          "text" => "รายงานสภาพอากาศวันนี้"
-                            //                        ]
-                            //                  ]
-                            //                ],
-                            //                [
-                            //                  "thumbnailImageUrl" => "https://codesign-studio.in.th/img/jake.jpg",
-                            //                  "imageBackgroundColor" => "#000000",
-                            //                  "title" => "ตัวเลือก",
-                            //                  "text" => "กรุณาเลือก",
-                            //                  "actions" => [
-                            //                      [
-                            //                          "type" => "message",
-                            //                          "label" => "จำนวนเบอร์เพื่อนๆ",
-                            //                          "text" => "เบอร์เพื่อนทั้งหมด"
-                            //                      ],
-                            //                      [
-                            //                          "type" => "message",
-                            //                          "label" => "พยากรณ์อากาศ",
-                            //                          "text" => "ช่วยพยากรณ์อากาศที"
-                            //                      ]
-                            //                  ]
-                            //                ]
-                            //            ],
-                            //            "imageAspectRatio" => "rectangle",
-                            //            "imageSize" => "cover"
-                            //        ]
-                            //  ]
-                            // ];       
-
-                        }else if(strpos($text, 'นายเป็นใคร') !== false){
-                            $messages = [
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'สวัสดีครับผมชื่อ Jake'
-                                    ],
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'ผมเป็นบอทเอาไว้พูดคุยเล่น และ อำนวยความสะดวก'
-                                    ],
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'ผมสามารถเรียนรู้คำได้จากคุณ, จดจำเบอร์มือถือ และ รายงานสภาพอากาศได้ด้วย'
-                                    ]
-                            ];
+                            ];  
                         }else{
                             if(strpos($text, 'บ้า')){
                                $reply = "ใครบ้า";
