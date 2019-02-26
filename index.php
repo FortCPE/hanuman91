@@ -97,13 +97,17 @@ if (!is_null($events['events'])) {
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
                             $result_val = explode("จอง", $text);
-                            $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
-                            $insert_connection->execute(Array(
-                                ":id" => NULL,
-                                ":name" => $result_val[0],
-                                ":time_today" => $result_val[1],
-                                ":user_id" => $userId
-                            ));
+                            if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
+                               $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
+                            ){
+                                $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`) VALUES (:id, :name, :time_today, :user_id)");
+                                $insert_connection->execute(Array(
+                                    ":id" => NULL,
+                                    ":name" => $result_val[0],
+                                    ":time_today" => "9:30",
+                                    ":user_id" => $userId
+                                ));
+                            }
                             
                             $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
                             $query_connection->execute();
