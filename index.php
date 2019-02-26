@@ -106,15 +106,18 @@ if (!is_null($events['events'])) {
                             $array1= array('Mathematics','Physics');
                             array_push($array1,'Chemistry','Biology');
                             
+                            function list_arrays(){
+                                for ($i=0; $i < count($array1); $i++) { 
+                                    return $array1[$i];
+                                }
+                            }
 
                             $messages = [
                                 [
                                     'type' => 'text',
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 อัพเดต'.$var_date.' '.$date.'
-09.30 '.for ($i=0; $i < count($array1); $i++) { 
-    echo ' '.$array1[$i];
-}.'
+09.30 '.echo list_arrays().'
 11:00 
 15.00 
 16.30
