@@ -31,6 +31,19 @@ if (!is_null($events['events'])) {
             ));
             $rowCount = $query_connection->rowCount();
             if($rowCount >= 1){
+                $date = date('d/m/Y');
+
+                $var_date = "2012-01-01 00:00:00"; // Query ออกมาได้เลยครับ
+
+                $thai_day_arr=array("อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัสบดี","ศุกร์","เสาร์");
+                function thai_date($time){
+                 global $thai_day_arr;
+                 $thai_date_return="วัน".$thai_day_arr[date("w",$time)];
+                 return $thai_date_return;
+                }
+
+                $var_date=strtotime("$var_date"); 
+                $var_date= thai_date($var_date);
                 $fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC);
                 if($fetch_connection['status'] == 'true'){
                     if($groupId != '' && $userId != ''){
@@ -77,15 +90,15 @@ if (!is_null($events['events'])) {
                                 [
                                     'type' => 'text',
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
-อัพเดตวันอังคาร26/2/62
-09.30 ตุ๊ก2 แอน ติน แอน ทดลอง กิ่ง
-11:00 
-15.00 
-16.30
-18.00 ไอซ์ พี่โบว์ มิลค์
-19:30 ป้อม
-**เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
-ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
+                                    อัพเดต'.$var_date.' '.$date.'
+                                    09.30 ตุ๊ก2 แอน ติน แอน ทดลอง กิ่ง
+                                    11:00 
+                                    15.00 
+                                    16.30
+                                    18.00 ไอซ์ พี่โบว์ มิลค์
+                                    19:30 ป้อม
+                                    **เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
+                                    ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                 ]
                             ];
                         }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
