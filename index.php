@@ -86,12 +86,35 @@ if (!is_null($events['events'])) {
                                     ]
                             ];
                         }else if(strpos($text, "จอง") !== false){
+                            $headers_gp = array('Authorization: Bearer ' . $access_token);
+                            $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
+                            $ch_gp = curl_init($url_gp);
+                            curl_setopt($ch_gp, CURLOPT_RETURNTRANSFER, true);
+                            curl_setopt($ch_gp, CURLOPT_HTTPHEADER, $headers_gp);
+                            curl_setopt($ch_gp, CURLOPT_FOLLOWLOCATION, 1);
+                            $result_gp = curl_exec($ch_gp);
+                            $result_decode = json_decode($result_gp);
+                            curl_close($ch_gp);
+                            $Name = $result_decode->displayName;
+
+                            $first_array = array();
+                            $second_array = array();
+                            $third_array = array();
+                            $fouth_array = array();
+                            $fifth_array = array();
+                            $sixth_array = array();
+                            array_push($first_array, $name);
+
                             $messages = [
                                 [
                                     'type' => 'text',
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 อัพเดต'.$var_date.' '.$date.'
-09.30 ตุ๊ก2 แอน ติน แอน ทดลอง กิ่ง
+09.30'.
+for ($i=0; $i < count($first_array); $i++) { 
+    echo $first_array[$i].' ';
+}
+.'
 11:00 
 15.00 
 16.30
