@@ -110,11 +110,7 @@ if (!is_null($events['events'])) {
                                     'type' => 'text',
                                     'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
 อัพเดต'.$var_date.' '.$date.'
-09.30'.
-for ($i=0; $i < count($first_array); $i++) { 
-    echo $first_array[$i].' ';
-}
-.'
+09.30'.var_dump($first_array).'
 11:00 
 15.00 
 16.30
