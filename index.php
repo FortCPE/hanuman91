@@ -4,6 +4,8 @@ $access_token = '5LUYgpAMCZCXCjV1icPuEe/owEeB09pZE6ehutRvFZR1lnm2ENTzheQp1tTsbHT
 $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
+
+date_default_timezone_set("Asia/Bangkok");
 if (!is_null($events['events'])) {
     // Loop through each event
     foreach ($events['events'] as $event) {
@@ -85,7 +87,7 @@ if (!is_null($events['events'])) {
                                         'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
-                        }else if(strpos($text, "จอง") !== false){
+                        }else if(strpos($text, "จอง") !== false || strpos($text, "เปลี่ยนเป็น")){
                             $headers_gp = array('Authorization: Bearer ' . $access_token);
                             $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
                             $ch_gp = curl_init($url_gp);
