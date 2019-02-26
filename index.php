@@ -67,7 +67,7 @@ if (!is_null($events['events'])) {
                           
                         }else if(strpos($text, 'ขอเบอร์') !== false || strpos($text, 'เบอร์') !== false || strpos($text, 'เบอ') !== false){
                             
-                        }else if($text == 'Shutdown Jake'){
+                        }else if($text == 'Bot Shutdown'){
                             $Update_Status = "UPDATE bot_status SET status = 'false' WHERE group_id = :group_id";
                             $Query_Update = $pdo->prepare($Update_Status);
                             $Query_Update->execute(Array(
@@ -76,11 +76,11 @@ if (!is_null($events['events'])) {
                             $messages = [
                                     [
                                         'type' => 'text',
-                                        'text' => 'กำลังทำการปิดตัวเอง'
+                                        'text' => '[System] กำลังทำการปิดตัวเอง...'
                                     ],
                                     [
                                         'type' => 'text',
-                                        'text' => 'Jake ไปละนะครับ ไว้เจอกันใหม่'
+                                        'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
                         }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
@@ -291,7 +291,7 @@ if (!is_null($events['events'])) {
                     }
 
                 }else{
-                    if($text == 'Start Jake'){
+                    if($text == 'Bot Start'){
                         $Update_Status = "UPDATE bot_speak SET bot_status = 'true' WHERE bot_groupid = :group_id";
                         $Query_Update = $pdo->prepare($Update_Status);
                         $Query_Update->execute(Array(
@@ -304,23 +304,7 @@ if (!is_null($events['events'])) {
                             ],
                             [
                                 'type' => 'text',
-                                'text' => 'Jake กลับมาแล้วครับ'
-                            ]
-                        ];
-                    }else if(strpos($text, "Jake พูด") !== false || strpos($text, "Jakeพูด") !== false){
-                        $Update_Status = "UPDATE bot_status SET status = 'true' WHERE group_id = :group_id";
-                        $Query_Update = $pdo->prepare($Update_Status);
-                        $Query_Update->execute(Array(
-                            ":group_id" => $groupId
-                        ));
-                        $messages = [
-                            [
-                                'type' => 'text',
-                                'text' => 'กำลังเปิดระบบ...'
-                            ],
-                            [
-                                'type' => 'text',
-                                'text' => 'Jake กลับมาแล้วครับ'
+                                'text' => '[System] พร้อมทำงาน'
                             ]
                         ];
                     }
