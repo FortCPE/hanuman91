@@ -59,31 +59,17 @@ if (!is_null($events['events'])) {
                         $result_decode = json_decode($result_gp);
                         curl_close($ch_gp);
                         $Name = $result_decode->displayName;
-                        if($userId == 'U72c641a79b2f1a785a7b362df99931ae'){
-                            $Display_Name = "โฟร์ท";
-                            $messages = [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'สวัสดีครับ'.$Display_Name
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => 'มีอะไรให้รับใช้ครับ'
-                                ]
-                            ];
-                        }else if($Name == 'MΔÏ'){
-                            $Display_Name = "ใหม่";
-                            $messages = [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'สวัสดีครับ'.$Display_Name
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => 'มีอะไรให้รับใช้ครับ'
-                                ]
-                            ];
-                        }
+                        $Display_Name = "โฟร์ท";
+                        $messages = [
+                            [
+                                'type' => 'text',
+                                'text' => 'สวัสดีครับ'.$Name
+                            ],
+                            [
+                                'type' => 'text',
+                                'text' => 'มีอะไรให้รับใช้ครับ'
+                            ]
+                        ];
                     }else if($reply != ''){
                         $messages = [
                                 [
