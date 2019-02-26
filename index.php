@@ -45,6 +45,7 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
+                            $Display_Name = "โฟร์ท";
                             $messages = [
                                 [
                                     'type' => 'text',
@@ -53,23 +54,6 @@ if (!is_null($events['events'])) {
                                 [
                                     'type' => 'text',
                                     'text' => 'มีอะไรให้รับใช้ครับ'
-                                ]
-                            ];
-                        }else if(strpos($text, "จอง") !== false || strpos($text, " ") !== false)
-                            $headers_gp = array('Authorization: Bearer ' . $access_token);
-                            $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
-                            $ch_gp = curl_init($url_gp);
-                            curl_setopt($ch_gp, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($ch_gp, CURLOPT_HTTPHEADER, $headers_gp);
-                            curl_setopt($ch_gp, CURLOPT_FOLLOWLOCATION, 1);
-                            $result_gp = curl_exec($ch_gp);
-                            $result_decode = json_decode($result_gp);
-                            curl_close($ch_gp);
-                            $Name = $result_decode->displayName;
-                            $messages = [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'test'
                                 ]
                             ];
                         }else if($text == 'Bot Shutdown'){
