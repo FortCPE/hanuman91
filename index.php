@@ -96,7 +96,11 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-
+                            $check_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE user_id = :user_id");
+                            $check_connection->execute(Array(
+                                ":user_id" => $userId
+                            ));
+                            $row_connection = $check_connection->rowCount();
                             $first_array = array();
                             $second_array = array();
                             $third_array = array();
