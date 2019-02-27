@@ -290,18 +290,17 @@ if (!is_null($events['events'])) {
                                 ]
                             ];  
                         }else{
-                            $check_name = $pdo->prepare("SELECT * FROM bot_customer WHERE user_id = :userId AND today = :today");
+                            $check_name = $pdo->prepare("SELECT * FROM bot_customer WHERE user_id = :user_id AND today = :today");
                             $check_name->execute(Array(
-                                ":userId" => $userId,
+                                ":user_id" => $userId,
                                 ":today" => date("Y-m-d")
                             ));
                             if($check_name->rowCount() == 1){
                                 $fetch_check = $check_name->fetch(PDO::FETCH_ASSOC);
                                 if($fetch_check['name'] == "" || $fetch_check['name'] == null){
-                                    $update_name = $pdo->prepare("UPDATE `bot_customer` SET `name` = :name WHERE `user_id` = :userId AND today = :today;");
+                                    $update_name = $pdo->prepare("UPDATE `bot_customer` SET `name` = :name WHERE `user_id` = :user_id");
                                     $result = $update_name->execute(Array(
-                                        ":userId" => $userId,
-                                        ":today" => date("Y-m-d")
+                                        ":user_id" => $userId
                                     ));
                                     if($result){
                                         $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30' AND `today` = :today");
