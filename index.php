@@ -111,7 +111,7 @@ if (!is_null($events['events'])) {
                                     ":user_id" => $userId,
                                     ":today" => date("Y-m-d")
                                 ));
-                                if($result_val[1] == "9"){
+                                if($result_val[1] == "09:30"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -119,7 +119,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "11"){
+                                }else if($result_val[1] == "11:00"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -127,7 +127,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "15"){
+                                }else if($result_val[1] == "15:00"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -135,7 +135,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "16"){
+                                }else if($result_val[1] == "16:30"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -143,7 +143,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "18"){
+                                }else if($result_val[1] == "18:00"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -151,7 +151,7 @@ if (!is_null($events['events'])) {
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "19"){
+                                }else if($result_val[1] == "19:30"){
                                     $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
@@ -229,22 +229,7 @@ if (!is_null($events['events'])) {
 ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                 ]
                             ];
-                        }else if(strpos($text, "จอง") !== false || 
-                                strpos($text, "9:30") !== false ||
-                                strpos($text, "09:30") !== false ||
-                                strpos($text, "9.30") !== false ||
-                                strpos($text, "09.30") !== false ||
-                                strpos($text, "11:00") !== false ||
-                                strpos($text, "11.00") !== false ||
-                                strpos($text, "15:00") !== false ||
-                                strpos($text, "15.00") !== false ||
-                                strpos($text, "16:30") !== false ||
-                                strpos($text, "16.30") !== false ||
-                                strpos($text, "18:00") !== false ||
-                                strpos($text, "18.00") !== false ||
-                                strpos($text, "19:30") !== false ||
-                                strpos($text, "19.30") !== false ||
-                            ){
+                        }else if(strpos($text, "จอง") !== false || strpos($text, "9:30") !== false){
                             $messages = [
                                 [
                                       "type" => "template",
@@ -261,17 +246,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 09:30 น.",
-                                                        "text" => "ลงเวลาเรียน@9"
+                                                        "text" => "ลงเวลาเรียน@09:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 11:00 น.",
-                                                        "text" => "ลงเวลาเรียน@11"
+                                                        "text" => "ลงเวลาเรียน@11:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 15:00 น.",
-                                                        "text" => "ลงเวลาเรียน@15"
+                                                        "text" => "ลงเวลาเรียน@15:00"
                                                     ]
                                                 ]
                                               ],
@@ -284,17 +269,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 16:30 น.",
-                                                        "text" => "ลงเวลาเรียน@16"
+                                                        "text" => "ลงเวลาเรียน@16:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 18:00 น.",
-                                                        "text" => "ลงเวลาเรียน@18"
+                                                        "text" => "ลงเวลาเรียน@18:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 19:30 น.",
-                                                        "text" => "ลงเวลาเรียน@19"
+                                                        "text" => "ลงเวลาเรียน@19:30"
                                                     ]
                                                 ]
                                               ]
