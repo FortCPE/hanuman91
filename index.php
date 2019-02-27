@@ -87,7 +87,7 @@ if (!is_null($events['events'])) {
                                         'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
-                        }else if(strpos($text, "จองเวลาเรียน@") !== false){
+                        }else if(strpos($text, "ลงเวลาเรียน@") !== false){
                             $headers_gp = array('Authorization: Bearer ' . $access_token);
                             $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
                             $ch_gp = curl_init($url_gp);
@@ -98,7 +98,7 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-                            if(strpos($text, "จองเวลาเรียน@") !== false){
+                            if(strpos($text, "ลงเวลาเรียน@") !== false){
                                 $result_val = explode("@", $text);
                             }
                             $query_check = $pdo->prepare("SELECT * FROM `bot_customer` WHERE `user_id` = :user_id");
@@ -229,7 +229,7 @@ if (!is_null($events['events'])) {
 ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                 ]
                             ];
-                        }else if(strpos($text, "เมนู") !== false || strpos($text, "menu") !== false){
+                        }else if(strpos($text, "จอง") !== false){
                             $messages = [
                                 [
                                       "type" => "template",
@@ -246,17 +246,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 09:30 น.",
-                                                        "text" => "จองเวลาเรียน@09:30"
+                                                        "text" => "ลงเวลาเรียน@09:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 11:00 น.",
-                                                        "text" => "จองเวลาเรียน@11:00"
+                                                        "text" => "ลงเวลาเรียน@11:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 15:00 น.",
-                                                        "text" => "จองเวลาเรียน@15:00"
+                                                        "text" => "ลงเวลาเรียน@15:00"
                                                     ]
                                                 ]
                                               ],
@@ -269,17 +269,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 16:30 น.",
-                                                        "text" => "จองเวลาเรียน@16:30"
+                                                        "text" => "ลงเวลาเรียน@16:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 18:00 น.",
-                                                        "text" => "จองเวลาเรียน@18:00"
+                                                        "text" => "ลงเวลาเรียน@18:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 19:30 น.",
-                                                        "text" => "จองเวลาเรียน@19:30"
+                                                        "text" => "ลงเวลาเรียน@19:30"
                                                     ]
                                                 ]
                                               ]
