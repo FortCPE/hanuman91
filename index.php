@@ -295,7 +295,6 @@ if (!is_null($events['events'])) {
                                 ":user_id" => $userId,
                                 ":today" => date("Y-m-d")
                             ));
-                            if($check_name->rowCount() == 1){
                                 $fetch_check = $check_name->fetch(PDO::FETCH_ASSOC);
                                 if($fetch_check['name'] == "" || $fetch_check['name'] == null || $fetch_check['name'] == NULL){
                                     $update_name = $pdo->prepare("UPDATE `bot_customer` SET `name` = :name WHERE `user_id` = :user_id");
@@ -362,7 +361,6 @@ if (!is_null($events['events'])) {
                                         ];
                                     }
                                 }
-                            }
                         }
                     }else{
                         if(strpos($text, 'สวัสดี') !== false || strpos($text, 'โย่') !== false || strpos($text, 'เห้') !== false){
