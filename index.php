@@ -174,33 +174,45 @@ if (!is_null($events['events'])) {
 
                             
                             
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_first .= ' '.$fetch_connection['name'];
                             }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '11:00'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '11:00' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_second .= ' '.$fetch_connection['name'];
                             }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '15:00'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '15:00' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_third .= ' '.$fetch_connection['name'];
                             }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '16:30'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '16:30' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_fouth .= ' '.$fetch_connection['name'];
                             }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '18:00'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '18:00' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_fifth .= ' '.$fetch_connection['name'];
                             }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '19:30'");
-                            $query_connection->execute();
+                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '19:30' AND `date` = :today");
+                            $query_connection->execute(Array(
+                                ":today" => date("Y-m-d")
+                            ));
                             while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
                                 $text_sixth .= ' '.$fetch_connection['name'];
                             }
