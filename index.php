@@ -307,48 +307,48 @@ if (!is_null($events['events'])) {
                                           "type" => "carousel",
                                           "columns" => [
                                               [
-                                                "thumbnailImageUrl" => "https://codesign-studio.in.th/img/jake.jpg",
+                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing1.png",
                                                 "imageBackgroundColor" => "#FFFFFF",
-                                                "title" => "ตัวเลือก",
-                                                "text" => "กรุณาเลือก",
+                                                "title" => "จองเวลาเรียน",
+                                                "text" => "ช่วงเช้า-บ่าย",
                                                 "actions" => [
                                                     [
                                                         "type" => "message",
-                                                        "label" => "Jake คืออะไร",
-                                                        "text" => "นายเป็นใคร"
+                                                        "label" => "09:30",
+                                                        "text" => "จองเวลาเรียน 09:30"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "สอน Jake ยังไง",
-                                                        "text" => "วิธีสอน Jake"
+                                                        "label" => "11:00",
+                                                        "text" => "จองเวลาเรียน 11:00"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "สภาพอากาศของวันนี้",
-                                                        "text" => "รายงานสภาพอากาศวันนี้"
+                                                        "label" => "15:00",
+                                                        "text" => "จองเวลาเรียน 15:00"
                                                     ]
                                                 ]
                                               ],
                                               [
-                                                "thumbnailImageUrl" => "https://codesign-studio.in.th/img/jake2.jpg",
+                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing2.jpg",
                                                 "imageBackgroundColor" => "#000000",
-                                                "title" => "ตัวเลือก",
-                                                "text" => "กรุณาเลือก",
+                                                "title" => "จองเวลาเรียน",
+                                                "text" => "ช่วงเย็น-ค่ำ",
                                                 "actions" => [
                                                     [
                                                         "type" => "message",
-                                                        "label" => "พยากรณ์อากาศวันพรุ่งนี้",
-                                                        "text" => "ช่วยพยากรณ์ที"
+                                                        "label" => "16:30",
+                                                        "text" => "จองเวลาเรียน 16:30"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "จำนวนเบอร์เพื่อนๆ",
-                                                        "text" => "เบอร์เพื่อนทั้งหมด"
+                                                        "label" => "18:00",
+                                                        "text" => "จองเวลาเรียน 18:00"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "ราคาทองวันนี้",
-                                                        "text" => "ราคาทองวันนี้ กรุณารอ 5-10 วินาที"
+                                                        "label" => "19:30",
+                                                        "text" => "จองเวลาเรียน 19:30"
                                                     ]
                                                 ]
                                               ]
