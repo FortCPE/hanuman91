@@ -314,17 +314,17 @@ if (!is_null($events['events'])) {
                                                 "actions" => [
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 09:30 น.",
+                                                        "label" => "09:30",
                                                         "text" => "จองเวลาเรียน 09:30"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 11:00 น.",
+                                                        "label" => "11:00",
                                                         "text" => "จองเวลาเรียน 11:00"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 15:00 น.",
+                                                        "label" => "15:00",
                                                         "text" => "จองเวลาเรียน 15:00"
                                                     ]
                                                 ]
@@ -337,17 +337,17 @@ if (!is_null($events['events'])) {
                                                 "actions" => [
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 16:30 น.",
+                                                        "label" => "16:30",
                                                         "text" => "จองเวลาเรียน 16:30"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 18:00 น.",
+                                                        "label" => "18:00",
                                                         "text" => "จองเวลาเรียน 18:00"
                                                     ],
                                                     [
                                                         "type" => "message",
-                                                        "label" => "เวลา 19:30 น.",
+                                                        "label" => "19:30",
                                                         "text" => "จองเวลาเรียน 19:30"
                                                     ]
                                                 ]
