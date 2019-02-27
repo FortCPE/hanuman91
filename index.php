@@ -307,7 +307,7 @@ if (!is_null($events['events'])) {
                                           "type" => "carousel",
                                           "columns" => [
                                               [
-                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing1.png",
+                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing.jpeg",
                                                 "imageBackgroundColor" => "#FFFFFF",
                                                 "title" => "จองเวลาเรียน",
                                                 "text" => "ช่วงเช้า-บ่าย",
@@ -330,7 +330,7 @@ if (!is_null($events['events'])) {
                                                 ]
                                               ],
                                               [
-                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing2.jpg",
+                                                "thumbnailImageUrl" => "https://hanuman91.herokuapp.com/boxing.jpeg",
                                                 "imageBackgroundColor" => "#000000",
                                                 "title" => "จองเวลาเรียน",
                                                 "text" => "ช่วงเย็น-ค่ำ",
