@@ -87,7 +87,7 @@ if (!is_null($events['events'])) {
                                         'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
-                        }else if(strpos($text, "จอง") !== false || strpos($text, "เปลี่ยนเป็น") !== false){
+                        }else if(strpos($text, "จองเวลาเรียน@") !== false){
                             $headers_gp = array('Authorization: Bearer ' . $access_token);
                             $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
                             $ch_gp = curl_init($url_gp);
@@ -98,10 +98,8 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-                            if(strpos($text, "จอง") !== false){
-                                $result_val = explode("จอง", $text);
-                            }else if(strpos($text, "เปลี่ยนเป็น") !== false){
-                                $result_val = explode("เปลี่ยนเป็น", $text);
+                            if(strpos($text, "จองเวลาเรียน@") !== false){
+                                $result_val = explode("@", $text);
                             }
                             $query_check = $pdo->prepare("SELECT * FROM `bot_customer` WHERE `user_id` = :user_id");
                             $query_check->execute(Array(
@@ -113,128 +111,61 @@ if (!is_null($events['events'])) {
                                     ":user_id" => $userId,
                                     ":today" => date("Y-m-d")
                                 ));
-                                if($result_val[1] == "09:30" || $result_val[1] == "9:30" || 
-                                   $result_val[1] == " 09:30" || $result_val[1] == " 9:30"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                if($result_val[1] == "09:30"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "9:30",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "11:00" || $result_val[1] == " 11:00"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                }else if($result_val[1] == "11:00"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "11:00",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "15:00" || $result_val[1] == " 15:00"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                }else if($result_val[1] == "15:00"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "15:00",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "16:30" || $result_val[1] == " 16:30"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                }else if($result_val[1] == "16:30"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "16:30",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "18:00" || $result_val[1] == " 18:00"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                }else if($result_val[1] == "18:00"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "18:00",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
-                                }else if($result_val[1] == "19:30" || $result_val[1] == " 19:30"
-                                ){
-                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `name`, `time`, `user_id`, `today`) VALUES (:id, :name, :time_today, :user_id, :today)");
+                                }else if($result_val[1] == "19:30"){
+                                    $insert_connection = $pdo->prepare("INSERT INTO `bot_customer` (`id`, `time`, `user_id`, `today`) VALUES (:id, :time_today, :user_id, :today)");
                                     $insert_connection->execute(Array(
                                         ":id" => NULL,
-                                        ":name" => $result_val[0],
                                         ":time_today" => "19:30",
                                         ":user_id" => $userId,
                                         ":today" => date("Y-m-d")
                                     ));
                                 }
-
-                            
-                            
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_first .= ' '.$fetch_connection['name'];
-                            }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '11:00' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_second .= ' '.$fetch_connection['name'];
-                            }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '15:00' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_third .= ' '.$fetch_connection['name'];
-                            }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '16:30' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_fouth .= ' '.$fetch_connection['name'];
-                            }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '18:00' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_fifth .= ' '.$fetch_connection['name'];
-                            }
-                            $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '19:30' AND `today` = :today");
-                            $query_connection->execute(Array(
-                                ":today" => date("Y-m-d")
-                            ));
-                            while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
-                                $text_sixth .= ' '.$fetch_connection['name'];
-                            }
-                            $messages = [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
-อัพเดต'.$var_date.' '.$date.'
-09.30'.$text_first.'
-11:00'.$text_second.'
-15.00'.$text_third.'
-16.30'.$text_fouth.'
-18.00'.$text_fifth.'
-19:30'.$text_sixth.'
-**เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
-ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
-                                ]
-                            ];
+                                $messages = [
+                                    [
+                                        'type' => 'text',
+                                        'text' => '[@] ขอชื่อผู้จองหน่อยครับ'
+                                    ]
+                                ];
                         }else if(strpos($text, "ยกเลิก") !== false){
                             $delete_connection = $pdo->prepare("DELETE FROM `bot_customer` WHERE `user_id` = :user_id AND `today` = :today");
                             $delete_connection->execute(Array(
@@ -315,17 +246,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 09:30 น.",
-                                                        "text" => "จองเวลาเรียน 09:30"
+                                                        "text" => "จองเวลาเรียน@09:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 11:00 น.",
-                                                        "text" => "จองเวลาเรียน 11:00"
+                                                        "text" => "จองเวลาเรียน@11:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 15:00 น.",
-                                                        "text" => "จองเวลาเรียน 15:00"
+                                                        "text" => "จองเวลาเรียน@15:00"
                                                     ]
                                                 ]
                                               ],
@@ -338,17 +269,17 @@ if (!is_null($events['events'])) {
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 16:30 น.",
-                                                        "text" => "จองเวลาเรียน 16:30"
+                                                        "text" => "จองเวลาเรียน@16:30"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 18:00 น.",
-                                                        "text" => "จองเวลาเรียน 18:00"
+                                                        "text" => "จองเวลาเรียน@18:00"
                                                     ],
                                                     [
                                                         "type" => "message",
                                                         "label" => "เวลา 19:30 น.",
-                                                        "text" => "จองเวลาเรียน 19:30"
+                                                        "text" => "จองเวลาเรียน@19:30"
                                                     ]
                                                 ]
                                               ]
@@ -359,51 +290,80 @@ if (!is_null($events['events'])) {
                                 ]
                             ];  
                         }else{
-                            if(strpos($text, 'บ้า')){
-                               $reply = "ใครบ้า";
-                            }else if(strpos($text, 'มึง')){
-                               $reply = "พูดจาหยาบคายนะมึง";    
-                            }else if(strpos($text, 'กู')){
-                               $reply = "พูดไม่เพราะเลย";   
-                            }else if(strpos($text, 'ฝันดี')){
-                               $reply = "ฝันดีเหมือนกันนะ";
-                            }else{
-                             $numbers = range(1, 12);
-                            shuffle($numbers);
-                            foreach ($numbers as $number) {
-                                if($number == 1){
-                                    $reply = "จริงหรอจ้ะ";
-                                }else if($number == 2){
-                                    $reply = "ใช่หรอ";
-                                }else if($number == 3){
-                                    $reply = "ไม่รู้";
-                                }else if($number == 4){
-                                    $reply = "อ๋อๆ";
-                                }else if($number == 5){
-                                    $reply = "โอเคๆ";
-                                }else if($number == 6){
-                                    $reply = "แล้วแต่เลย";
-                                }else if($number == 7){
-                                    $reply = "ไม่รู้ว้อย";
-                                }else if($number == 8){
-                                    $reply = "เจ้กรักทุกคนนะ";
-                                }else if($number == 9){
-                                    $reply = "เจ้ก คิดถึงฟินจัง ._.";
-                                }else if($number == 10){
-                                    $reply = "หิวว้อยยย";
-                                }else if($number == 11){
-                                    $reply = "ต้องการคนดูแล";
-                                }else if($number == 12){
-                                    $reply = "อิอิ";
-                                } 
+                            $check_name = $pdo->prepare("SELECT * FROM bot_customer WHERE userId = :userId AND today = :today");
+                            $check_name->execute(Array(
+                                ":userId" => $userId,
+                                ":today" => date("Y-m-d")
+                            ));
+                            if($check_name->rowCount() == 1){
+                                $fetch_check = $check_name->fetch(PDO::FETCH_ASSOC);
+                                if($fetch_check['name'] == "" || $fetch_check['name'] == null){
+                                    $update_name = $pdo->prepare("UPDATE `bot_customer` SET `name` = :name WHERE `userId` = :userId AND today = :today;");
+                                    $result = $update_name->execute(Array(
+                                        ":userId" => $userId,
+                                        ":today" => date("Y-m-d")
+                                    ));
+                                    if($result){
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '9:30' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_first .= ' '.$fetch_connection['name'];
+                                        }
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '11:00' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_second .= ' '.$fetch_connection['name'];
+                                        }
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '15:00' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_third .= ' '.$fetch_connection['name'];
+                                        }
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '16:30' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_fouth .= ' '.$fetch_connection['name'];
+                                        }
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '18:00' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_fifth .= ' '.$fetch_connection['name'];
+                                        }
+                                        $query_connection = $pdo->prepare("SELECT * FROM bot_customer WHERE `time` = '19:30' AND `today` = :today");
+                                        $query_connection->execute(Array(
+                                            ":today" => date("Y-m-d")
+                                        ));
+                                        while ($fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC)) {
+                                            $text_sixth .= ' '.$fetch_connection['name'];
+                                        }
+                                        $messages = [
+                                            [
+                                                'type' => 'text',
+                                                'text' => 'จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
+อัพเดต'.$var_date.' '.$date.'
+09.30'.$text_first.'
+11:00'.$text_second.'
+15.00'.$text_third.'
+16.30'.$text_fouth.'
+18.00'.$text_fifth.'
+19:30'.$text_sixth.'
+**เพื่อความสะดวกสบายของสมาชิกโปรดจองเวลาเรียนก่อนเข้าใช้บริการทุกครั้ง*จองเวลาเรียนผ่านไลน์นี้ได้เลยนะคะ
+ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
+                                            ]
+                                        ];
+                                    }
+                                }
                             }
-                            }
-                            $messages = [
-                                    [
-                                        'type' => 'text',
-                                        'text' => $reply
-                                    ]
-                            ];
                         }
                     }else{
                         if(strpos($text, 'สวัสดี') !== false || strpos($text, 'โย่') !== false || strpos($text, 'เห้') !== false){
