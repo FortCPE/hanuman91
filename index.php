@@ -98,7 +98,11 @@ if (!is_null($events['events'])) {
                             $result_decode = json_decode($result_gp);
                             curl_close($ch_gp);
                             $Name = $result_decode->displayName;
-                            $result_val = explode("จอง", $text);
+                            if(strpos($text, "จอง") !== false){
+                                $result_val = explode("จอง", $text);
+                            }else if(strpos($text, "เปลี่ยนเป็น") !== false){
+                                $result_val = explode("เปลี่ยนเป็น", $text);
+                            }
                             $query_check = $pdo->prepare("SELECT * FROM `bot_customer` WHERE `user_id` = :user_id");
                             $query_check->execute(Array(
                                 ":user_id" => $userId
