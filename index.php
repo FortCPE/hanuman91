@@ -87,7 +87,7 @@ if (!is_null($events['events'])) {
                                         'text' => '[System] ปิดระบบแล้วครับ'
                                     ]
                             ];
-                        }else if(strpos($text, "จอง") !== false || strpos($text, "เปลี่ยนเป็น")){
+                        }else if(strpos($text, "จอง") !== false || strpos($text, "เปลี่ยนเป็น") !== false){
                             $headers_gp = array('Authorization: Bearer ' . $access_token);
                             $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
                             $ch_gp = curl_init($url_gp);
