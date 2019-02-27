@@ -296,7 +296,6 @@ if (!is_null($events['events'])) {
                                 ":today" => date("Y-m-d")
                             ));
                                 $fetch_check = $check_name->fetch(PDO::FETCH_ASSOC);
-                                if($fetch_check['name'] == "" || $fetch_check['name'] == null || $fetch_check['name'] == NULL){
                                     $update_name = $pdo->prepare("UPDATE `bot_customer` SET `name` = :name WHERE `user_id` = :user_id");
                                     $result = $update_name->execute(Array(
                                         ":user_id" => $userId
@@ -359,7 +358,7 @@ if (!is_null($events['events'])) {
 ขอสงวนสิทธิ์ตามลำดับการจองก่อนหลังนะคะ'
                                             ]
                                         ];
-                                    }
+                                    
                                 }
                         }
                     }else{
