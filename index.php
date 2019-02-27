@@ -49,29 +49,7 @@ if (!is_null($events['events'])) {
                 $fetch_connection = $query_connection->fetch(PDO::FETCH_ASSOC);
                 if($fetch_connection['status'] == 'true'){
                     if($groupId != '' && $userId != ''){
-                        if(strpos($text, 'สวัสดี') !== false || strpos($text, 'โย่') !== false){
-                            $headers_gp = array('Authorization: Bearer ' . $access_token);
-                            $url_gp = 'https://api.line.me/v2/bot/group/'.$groupId.'/member/'.$userId.'';
-                            $ch_gp = curl_init($url_gp);
-                            curl_setopt($ch_gp, CURLOPT_RETURNTRANSFER, true);
-                            curl_setopt($ch_gp, CURLOPT_HTTPHEADER, $headers_gp);
-                            curl_setopt($ch_gp, CURLOPT_FOLLOWLOCATION, 1);
-                            $result_gp = curl_exec($ch_gp);
-                            $result_decode = json_decode($result_gp);
-                            curl_close($ch_gp);
-                            $Name = $result_decode->displayName;
-                            $Display_Name = "โฟร์ท";
-                            $messages = [
-                                [
-                                    'type' => 'text',
-                                    'text' => 'สวัสดีครับ '.$Name
-                                ],
-                                [
-                                    'type' => 'text',
-                                    'text' => 'มีอะไรให้รับใช้ครับ'
-                                ]
-                            ];
-                        }else if($text == 'Bot Shutdown'){
+                        if($text == 'Bot Shutdown'){
                             $Update_Status = "UPDATE bot_status SET status = 'false' WHERE group_id = :group_id";
                             $Query_Update = $pdo->prepare($Update_Status);
                             $Query_Update->execute(Array(
@@ -163,7 +141,7 @@ if (!is_null($events['events'])) {
                                 $messages = [
                                     [
                                         'type' => 'text',
-                                        'text' => '[@] ขอชื่อผู้จองหน่อยครับ'
+                                        'text' => '[@] ขอชื่อผู้จองหน่อยค่ะ'
                                     ]
                                 ];
                         }else if(strpos($text, "ยกเลิก") !== false){
@@ -366,32 +344,7 @@ if (!is_null($events['events'])) {
                             }
                         }
                     }else{
-                        if(strpos($text, 'สวัสดี') !== false || strpos($text, 'โย่') !== false || strpos($text, 'เห้') !== false){
-                            if($userId == 'U72c641a79b2f1a785a7b362df99931ae'){
-                                $Display_Name = "โฟร์ท";
-                                $messages = [
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'สวัสดีครับ'.$Display_Name
-                                    ],
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'มีอะไรให้รับใช้ครับ'
-                                    ]
-                                ];
-                            }else{
-                                $messages = [
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'สวัสดีครับ'
-                                    ],
-                                    [
-                                        'type' => 'text',
-                                        'text' => 'มีอะไรให้รับใช้ครับ'
-                                    ]
-                                ];
-                            }
-                        }
+                        
                     }
 
                 }else{
